@@ -1,5 +1,5 @@
 import type { MenuProps } from "../models/MenuProps"
-import Home from "../pages/home"
+import Home from "../pages/Home"
 import ItemList from "../pages/ItemList"
 import PurchaseOrder from "../pages/PurchaseOrder"
 
