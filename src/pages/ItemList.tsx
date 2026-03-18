@@ -1,15 +1,18 @@
+import { useState } from "react";
 import items from "../data/dummyItemList"
 import { RiAddLine } from "@remixicon/react";
+import BlockIconTextBtn from "../components/buttons/BlockIconTextBtn";
+import BlockInputField from "../components/input_fields/BlockInputField";
 
 function ItemList() {
+    const [search, setSearch] = useState<string>('')
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)
+
     return (
         <div className={`min-h-screen w-full h-full px-6 pt-6 flex flex-col space-y-4`}>
             <div className={`flex flex-row space-x-4 items-center`}>
-                <input type="text" placeholder="Cari" className={`outline-none w-full py-2 px-4 border border-gray-400 rounded-md text-sm`}/>
-                <button className={`w-fit bg-blue-700 text-white flex flex-row items-center py-2 px-2 rounded-md space-x-2 cursor-pointer`} title="Tambah Barang">
-                    <RiAddLine className={`w-5`}/>
-                    <span className={`text-sm font-semibold`}>Tambah</span>
-                </button>
+                <BlockInputField type="text" placeholder="Cari Barang" onChange={handleSearch}/>
+                <BlockIconTextBtn icon={RiAddLine} text="Tambah"/>
             </div>
             <table className={`w-full text-sm text-black`}>
                 <thead>
@@ -20,7 +23,7 @@ function ItemList() {
                     </tr>
                 </thead>
                 <tbody className={`divide-y divide-gray-300`}>
-                    { items.map((item, index) => {
+                    { items.filter((item) => item.name.toLowerCase().includes(search.toLowerCase())).map((item, index) => {
                         return (
                             <tr key={index}>
                                 <td className={`px-6 py-3`}>{item.id}</td>
