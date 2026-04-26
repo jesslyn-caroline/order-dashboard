@@ -1,16 +1,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import IndexLayout from './layouts/IndexLayout'
-import menus from './data/navigation'
+import pages from './data/navigation'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<IndexLayout />}>
-          { menus.map((menu) => {
+          { pages.menus.map((menu) => {
               return <Route path={menu.path} element={menu.element} /> 
           })}
         </Route>
+        { pages.subpages.map((subpage) => {
+            return <Route path={subpage.path} element={subpage.element} />
+        })}
       </Routes>
     </BrowserRouter>
   )
