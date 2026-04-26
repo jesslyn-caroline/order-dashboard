@@ -1,18 +1,17 @@
-import { useState } from "react";
 import items from "../data/dummyItemList"
 import { RiAddLine } from "@remixicon/react";
 import BlockIconTextBtn from "../components/buttons/BlockIconTextBtn";
 import BlockInputField from "../components/input_fields/BlockInputField";
+import ItemListHook from "../hooks/ItemListHook";
 
 function ItemList() {
-    const [search, setSearch] = useState<string>('')
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)
+    const { search, handleSearch, handleAddItem } = ItemListHook()
 
     return (
         <div className={`min-h-screen w-full h-full px-6 pt-6 flex flex-col space-y-4`}>
             <div className={`flex flex-row space-x-4 items-center`}>
                 <BlockInputField type="text" placeholder="Cari Barang" onChange={handleSearch}/>
-                <BlockIconTextBtn icon={RiAddLine} text="Tambah"/>
+                <BlockIconTextBtn icon={RiAddLine} text="Tambah" title="Tambah Barang" onClick={handleAddItem}/>
             </div>
             <table className={`w-full text-sm text-black`}>
                 <thead>
