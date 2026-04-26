@@ -1,5 +1,6 @@
 import type { MenuProps } from "../models/MenuProps"
 import Home from "../pages/Home"
+import ItemAdd from "../pages/ItemAdd"
 import ItemList from "../pages/ItemList"
 import PurchaseOrder from "../pages/PurchaseOrder"
 
@@ -13,4 +14,13 @@ const menus:MenuProps[] = [
     { path: '/delivery-orders', label: 'Delivery Orders', element: <Home /> },
 ]
 
-export default menus
+const subpages:MenuProps[] = [
+    { path: '/item/add', label: 'Tambah Barang', element: <ItemAdd /> },
+]
+
+const pages = {
+    menus,
+    subpages
+}
+
+export default pages
